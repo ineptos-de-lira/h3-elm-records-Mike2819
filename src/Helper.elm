@@ -1,9 +1,34 @@
 module Helper exposing (..)
 
+import Html exposing (Html, div, h1, li, text, ul)
+
+
+
+-- EXERCISES
+
+
+add2 : Int -> Int -> Int
+add2 int1 int2 =
+    int1 + int2
+
+
+add3 : Float -> Float -> Float -> Float
+add3 num1 num2 num3 =
+    num1 + num2 + num3
+
+
+calc : Int -> Int -> (Int -> Int -> Int) -> Int
+calc int1 int2 operator =
+    operator int1 int2
+
+
+
+-- RECORDS EXERCISES
+
 
 lan : List { name : String, releaseYear : Int, currentVersion : String }
 lan =
-    [ { name = "elm"
+    [ { name = "Elm"
       , releaseYear = 2012
       , currentVersion = "0.19.1"
       }
@@ -43,6 +68,10 @@ onlyStudents list =
         list
 
 
+
+-- ALIASES EXERCISE
+
+
 type alias Videogame =
     { title : String
     , releaseYear : Int
@@ -72,3 +101,39 @@ games =
 getVideogameGenres : List Videogame -> List (List String)
 getVideogameGenres list =
     List.map .genres list
+
+
+
+-- HTML EXERCISE
+
+
+type alias Computer =
+    { ram : String
+    , model : String
+    , brand : String
+    , screenSize : String
+    }
+
+
+myLaptop : Computer
+myLaptop =
+    { ram = "16GB"
+    , model = "MacBook Pro"
+    , brand = "Apple"
+    , screenSize = "14 Inch"
+    }
+
+
+main : Html msg
+main =
+    div []
+        [ h1 [] [ text "My laptop" ]
+        , div []
+            [ ul []
+                [ li [] [ text ("Ram: " ++ myLaptop.ram) ]
+                , li [] [ text ("Modelo: " ++ myLaptop.model) ]
+                , li [] [ text ("Marca: " ++ myLaptop.brand) ]
+                , li [] [ text ("Pulgadas: " ++ myLaptop.screenSize) ]
+                ]
+            ]
+        ]
